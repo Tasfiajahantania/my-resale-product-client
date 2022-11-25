@@ -1,14 +1,24 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
+
     const { register, formState: { errors }, handleSubmit, } = useForm();
     const { signIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+
+
+    navigate(from, { replace: true });
+
+
     const handleLogin = (data) => {
         setLoginError('');
         console.log(data);
@@ -17,6 +27,8 @@ const Login = () => {
                 const user = result.user;
                 toast.success("successful login");
                 console.log(user);
+
+
             })
             .catch(error => {
                 console.log(error.message)
@@ -30,7 +42,6 @@ const Login = () => {
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
-                            {" "}
                             <span className="label-text">Email</span>
                         </label>
                         <input
