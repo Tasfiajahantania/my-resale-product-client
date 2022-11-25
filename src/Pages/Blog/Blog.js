@@ -3,7 +3,7 @@ import React from 'react';
 const Blog = () => {
     return (
         <div className="m-3 text-black">
-            <h3 className="text-center my-4 text-4xl font-bold text-pink-700">
+            <h3 className="text-center my-4 text-4xl font-bold text-pink-600">
                 Blog Pages
             </h3>
 
