@@ -11,11 +11,11 @@ const Products = () => {
 
     }, []);
     return (
-        <div className='mx-10'>
-            <div class="text-center p-12">
+        <div className='mx-12'>
+            <div class="text-center p-10">
                 <h1 class="text-xl">All Product</h1>
             </div>
-            <section class=" mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-14">
+            <section class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-14">
                 {
                     products.map(product => <ProductCard product={product} />)
                 }
