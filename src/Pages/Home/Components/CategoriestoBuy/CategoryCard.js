@@ -4,7 +4,7 @@ import './CategoryCard.css';
 const CategoryCard = ({ category }) => {
     const { name, icon } = category;
     return (
-        <div className="card bg-base-100 category-card">
+        <div className="card bg-base-100 category-card duration-500 hover:scale-105 hover:shadow-xl">
             <figure className="px-10 pt-10">
                 <img src={icon} alt={name} />
             </figure>
