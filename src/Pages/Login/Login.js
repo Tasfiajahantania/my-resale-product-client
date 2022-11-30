@@ -1,34 +1,26 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
-
     const { register, formState: { errors }, handleSubmit, } = useForm();
     const { signIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    const location = useLocation();
     const navigate = useNavigate();
-
-    const from = location.state?.from?.pathname || '/';
-
-
-    navigate(from, { replace: true });
-
-
     const handleLogin = (data) => {
         setLoginError('');
-        console.log(data);
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                toast.success("successful login");
-                console.log(user);
-
-
+                if (user) {
+                    toast.success('Login successfull');
+                    navigate('/dashboard')
+                } else {
+                    toast.error("sdsds")
+                }
             })
             .catch(error => {
                 console.log(error.message)
@@ -42,6 +34,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
+                            {" "}
                             <span className="label-text">Email</span>
                         </label>
                         <input
@@ -80,7 +73,7 @@ const Login = () => {
                         </label>
                     </div>
                     <input
-                        className="btn btn-accent w-full"
+                        className="btn btn-primary w-full"
                         value="Login"
                         type="submit"
                     />
@@ -88,7 +81,7 @@ const Login = () => {
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
                 </form>
-                <p>
+                <p className="text-center mt-2">
 
                     <Link className="text-secondary" to="/signup">
                         Create new Account

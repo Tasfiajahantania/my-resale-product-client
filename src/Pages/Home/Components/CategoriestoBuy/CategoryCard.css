@@ -1,3 +1,6 @@
 .category-card {
-    box-shadow: 0 0 10px 5px #eee;
+    box-shadow: 0 0 10px 1px #eee;
+    min-width: 135px !important;
+    max-width: 135px !important;
+    border-radius: 8px !important;
 }

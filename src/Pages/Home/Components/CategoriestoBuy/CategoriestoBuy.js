@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './CategoriestoBuy.css';
 import CategoryCard from './CategoryCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import './CategoriestoBuy.css';
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
+import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from 'swiper';
 const CategoriestoBuy = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
@@ -9,14 +15,21 @@ const CategoriestoBuy = () => {
             .then(res => res.json())
             .then(res => setCategories(res));
     }, [])
-
     return (
-        <section className="mt-20 w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-10 gap-x-14">
+        <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
+            autoplay={{ delay: 1500 }}
+            spaceBetween={50}
+            slidesPerView={3}
+            scrollbar={{ draggable: true }}
+        >
             {
-                categories.map(category => <CategoryCard category={category} />)
+                categories.map(category => <SwiperSlide>
+                    <CategoryCard key={category._id} category={category} />
+                </SwiperSlide>)
             }
-        </section>
+        </Swiper>
     );
 };
-
 export default CategoriestoBuy;

@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './CategoryCard.css';
 
 const CategoryCard = ({ category }) => {
-    const { name, icon } = category;
+    const { _id, name, icon } = category;
     return (
-        <div className="card bg-base-200 category-card duration-500 hover:scale-105 hover:shadow-xl">
-            <figure className="px-10 pt-10">
+        <Link to={`/categroy/${_id}`} className="card bg-base-100 category-card">
+            <figure className="px-10 pt-5">
                 <img src={icon} alt={name} />
             </figure>
             <div className="card-body items-center text-center">
-                <h2 className="card-title">{name}</h2>
+                <h5 className="text-sm font-semibold">{name}</h5>
             </div>
-        </div>
+        </Link>
     );
 };
 

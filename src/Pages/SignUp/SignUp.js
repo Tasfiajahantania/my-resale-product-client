@@ -1,7 +1,8 @@
+import { Switch } from "antd";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 const SignUp = () => {
     const {
@@ -12,23 +13,50 @@ const SignUp = () => {
 
     const [signUpError, setSignUPError] = useState("");
     const { createUser, updateUser } = useContext(AuthContext);
+    const [toggleSeller, setToggleSeller] = useState(false);
 
+    const navigate = useNavigate();
     const handleSignUp = (data) => {
         setSignUPError("");
         createUser(data.email, data.password).then((result) => {
             const user = result.user;
-            console.log(user);
-            toast("User Created Successfully.");
             const userInfo = {
                 displayName: data.name,
             };
             updateUser(userInfo)
                 .then(() => {
-                    console.log(data.name, data.email);
+                    saveUser(data.name, data.email);
                 })
                 .catch((err) => console.log(err));
         });
     };
+
+    const saveUser = (name, email) => {
+
+        const user = {
+            name: name,
+            email: email,
+            role: toggleSeller ? "seller" : "user"
+        }
+        fetch('http://localhost:5030/store/user', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    navigate('/');
+                }
+            })
+    }
+
+    const toggle = () => {
+        toggleSeller ? setToggleSeller(false) : setToggleSeller(true);
+        console.log(toggleSeller);
+    }
 
     return (
         <div className="h-[800px] flex justify-center items-center">
@@ -87,14 +115,20 @@ const SignUp = () => {
                             <p className="text-red-500">{errors.password.message}</p>
                         )}
                     </div>
+                    <div className="form-control w-full max-w-xs mt-4">
+                        <label className="label cursor-pointer">
+                            {toggleSeller ? <span className="label-text">Seller</span> : <span className="label-text">User</span>}
+                            <Switch className="bg-orange-500" onClick={toggle}></Switch>
+                        </label>
+                    </div>
                     <input
-                        className="btn btn-accent w-full mt-4"
+                        className="btn btn-primary w-full mt-4"
                         value="Sign Up"
                         type="submit"
                     />
                     {signUpError && <p className="text-red-600">{signUpError}</p>}
                 </form>
-                <p>
+                <p className="mt-2 text-center">
                     Already have an account{" "}
                     <Link className="text-secondary" to="/login">
                         Please Login
