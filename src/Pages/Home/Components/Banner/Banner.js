@@ -17,10 +17,10 @@ const Banner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src={banner1} className="w-full" />
+                    <img src={banner1} alt="banner" className="w-full" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={banner2} className="w-full" />
+                    <img src={banner2} alt="banner" className="w-full" />
                 </SwiperSlide>
             </Swiper>
         </div >
