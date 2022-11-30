@@ -14,7 +14,7 @@ const ProductDetails = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:5030/product/${params_id.id}`)
+        axios.get(`https://server-side-ashen.vercel.app/product/${params_id.id}`)
             .then((response) => {
                 setProduct(response.data);
                 setLoader(false)

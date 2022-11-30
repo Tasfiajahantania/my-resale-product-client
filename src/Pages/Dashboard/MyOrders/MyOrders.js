@@ -7,7 +7,7 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext);
     const [productLoading, setProductLoading] = useState(true);
     useEffect(() => {
-        fetch(`http://localhost:5030/my/orders/${user?.email}`)
+        fetch(`https://server-side-ashen.vercel.app/my/orders/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data);

@@ -38,7 +38,7 @@ const SignUp = () => {
             email: email,
             role: toggleSeller ? "seller" : "user"
         }
-        fetch('http://localhost:5030/store/user', {
+        fetch('https://server-side-ashen.vercel.app/store/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

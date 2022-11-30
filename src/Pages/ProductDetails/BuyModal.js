@@ -32,7 +32,7 @@ const BuyModal = ({ product, productId }) => {
             toast.error('Please enter your meeting address');
         } else {
 
-            fetch('http://localhost:5030/store/order',
+            fetch('https://server-side-ashen.vercel.app/store/order',
                 {
                     method: 'POST',
                     headers: {

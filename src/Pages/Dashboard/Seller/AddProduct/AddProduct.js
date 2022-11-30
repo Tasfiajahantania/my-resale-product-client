@@ -45,7 +45,7 @@ const AddProduct = () => {
                     created_at: created_at
                 }
 
-                fetch('http://localhost:5030/store/product', {
+                fetch('https://server-side-ashen.vercel.app/store/product', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

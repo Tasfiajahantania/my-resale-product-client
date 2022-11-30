@@ -7,7 +7,7 @@ const OrderTable = ({ order }) => {
     const [loader, setLoader] = useState(true);
     useEffect(() => {
 
-        fetch(`http://localhost:5030/product/${productId}`)
+        fetch(`https://server-side-ashen.vercel.app/product/${productId}`)
             .then(res => res.json())
             .then(data => {
                 setOrderProduct(data)

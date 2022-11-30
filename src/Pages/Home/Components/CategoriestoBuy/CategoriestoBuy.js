@@ -11,7 +11,7 @@ import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from 'swiper';
 const CategoriestoBuy = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5030/all/categories')
+        fetch('https://server-side-ashen.vercel.app/all/categories')
             .then(res => res.json())
             .then(res => setCategories(res));
     }, [])

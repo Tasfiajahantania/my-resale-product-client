@@ -8,7 +8,7 @@ const CategoryProducts = () => {
     const category_id = useParams();
     const [category, setCategory] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5030/category/${category_id.id}`)
+        fetch(`https://server-side-ashen.vercel.app/category/${category_id.id}`)
             .then(response => response.json())
             .then(data => setCategory(data))
     }, [])

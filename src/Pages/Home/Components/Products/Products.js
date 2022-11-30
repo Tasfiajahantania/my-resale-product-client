@@ -7,7 +7,7 @@ const Products = () => {
     const [loader, setLoader] = useState(true);
     useEffect(() => {
 
-        axios.get('http://localhost:5030/all/products').then((response) => {
+        axios.get('https://server-side-ashen.vercel.app/all/products').then((response) => {
             setProducts(response.data)
             setLoader(false);
         });

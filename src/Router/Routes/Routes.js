@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: '/categroy/:id',
         element: <CategoryProducts></CategoryProducts>,
-        loader: ({ params }) => fetch(`http://localhost:5030/category/product/${params.id}`)
+        loader: ({ params }) => fetch(`https://server-side-ashen.vercel.app/category/product/${params.id}`)
       },
       {
         path: "/login",
@@ -66,17 +66,17 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/all-seller',
         element: <AdminRoute><AllSeller></AllSeller></AdminRoute>,
-        loader: () => fetch('http://localhost:5030/all/users/seller')
+        loader: () => fetch('https://server-side-ashen.vercel.app/all/users/seller')
       },
       {
         path: '/dashboard/all-buyer',
         element: <AdminRoute><AllUser></AllUser></AdminRoute>,
-        loader: () => fetch('http://localhost:5030/all/users/user')
+        loader: () => fetch('https://server-side-ashen.vercel.app/all/users/user')
       }
       , {
         path: '/dashboard/add-product',
         element: <SellerRoute><AddProduct></AddProduct></SellerRoute>,
-        loader: () => fetch('http://localhost:5030/all/categories')
+        loader: () => fetch('https://server-side-ashen.vercel.app/all/categories')
       }
       , {
         path: '/dashboard/my-product',
