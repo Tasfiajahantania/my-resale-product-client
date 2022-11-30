@@ -12,6 +12,7 @@ const MyProducts = () => {
     const closeModal = () => {
         setDeletingProduct(null);
     }
+
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {

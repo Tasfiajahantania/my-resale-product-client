@@ -14,6 +14,7 @@ const AllUser = () => {
                             <th>Avatar</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>

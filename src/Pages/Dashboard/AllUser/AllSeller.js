@@ -14,12 +14,16 @@ const AllSeller = () => {
                             <th>Avatar</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Remove</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {
                             sellers.map(user => <UserTable user={user} />)
+
                         }
+
                     </tbody>
                 </table>
             </div>

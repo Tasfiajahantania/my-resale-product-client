@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import avatar from '../../../../assets/images/images/avatar.png';
 
 const UserTable = ({ user }) => {
+    console.log('user123', user);
+    const [deleteUser, setDeleteUser] = useState('')
+    const handelDeleteUser = (id) => {
+        fetch(`https://server-side-ashen.vercel.app/users/${id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                setDeleteUser(data.deletedCount)
+            })
+    }
     const { name, email } = user;
     return (
         <tr>
@@ -16,6 +27,7 @@ const UserTable = ({ user }) => {
             </td>
             <td>{name}</td>
             <td>{email}</td>
+            <button onClick={() => handelDeleteUser(user._id)} className='btn bg-sky-500 mt-4'>Delate</button>
         </tr>
     );
 };
