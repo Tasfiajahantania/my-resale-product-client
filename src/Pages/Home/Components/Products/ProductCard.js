@@ -9,7 +9,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import avatar from '../../../../assets/images/images/avatar.png';
 
 const ProductCard = ({ product }) => {
-    const { _id, title, img, seller, sell_price, created_at } = product;
+    const { _id, title, img, seller, sell_price, created_at, original_price, location } = product;
     return (
         <div>
             <div className="rounded-md card-fit text-black">
@@ -31,10 +31,20 @@ const ProductCard = ({ product }) => {
                             </span>
                         </div>
                     </div>
+                    <div className="flex items-center space-x-2">
+                        <span className="text-sm">
+                            Location:  {location}
+                        </span>
+                    </div>
                     <div>
                         <div className="space-y-3 flex justify-between items-center">
-                            <p className="text-sm">
-                                <span className="text-base font-bold">${sell_price}</span></p>
+                            <div>
+                                <p className="text-sm">
+                                    <span className="text-base font-semibold">Original-price: ${original_price}</span></p>
+                                <p>
+                                    <span className="text-base font-semibold">Sell-price: ${sell_price}</span>
+                                </p>
+                            </div>
 
                             <Link to={`/product/${_id}`} className="btn btn-sm btn-primary mb-2"><FiShoppingCart className='mr-1' /> BUY</Link>
                         </div>
